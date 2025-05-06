@@ -8,9 +8,11 @@ import { TasksSkeleton } from "@/components/tasks-skeleton"
 
 export default function TasksPage() {
   const user = getUser()
+  console.log(user)
 
   return (
     <Suspense fallback={<TasksSkeleton />}>
+   
       {user?.role === "admin" ? <FilteredAdminTasks /> : <FilteredUserTasks />}
     </Suspense>
   )

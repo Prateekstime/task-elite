@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { users } from "@/constants/users.json"
-import { setUser } from "@/lib/auth"
+import { setUser, setToken } from "@/lib/auth"
 
 export default function LoginPage() {
 
@@ -41,8 +41,8 @@ export default function LoginPage() {
   
       const userData = response.data.user;
       const token = response.data.token;
-
-      localStorage.setItem("token", token);
+      setToken(token);
+     
 
      
   

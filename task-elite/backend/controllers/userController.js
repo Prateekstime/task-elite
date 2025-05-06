@@ -42,7 +42,7 @@ exports.healthCheck = async (req, res) => {
 };
 
 
-// User registration (with password hashing)
+//
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
   const avatar = `https://avatar.iran.liara.run/username?username=${name}`
@@ -70,7 +70,7 @@ exports.register = async (req, res) => {
 
 // User update logic (allows user to update name, email, avatar)
 exports.updateUser = async (req, res) => {
-  const userId = req.user.id;  // Extract user id from JWT token
+  const userId = req.user.id;  n
   const { name, email, avatar } = req.body;
 
   try {

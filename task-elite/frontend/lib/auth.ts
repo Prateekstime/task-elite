@@ -29,5 +29,24 @@ export const getUser = (): User | null => {
 export const logout = () => {
   if (typeof window !== "undefined") {
     localStorage.removeItem("user")
+    localStorage.removeItem("token")
   }
+}
+
+
+export const setToken = (token : any) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("token", JSON.stringify(token))
+  }
+
+}
+
+
+export const getToken = (): any | null => {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token")
+    return token ? JSON.parse(token) : null
+
+  }
+  return null
 }

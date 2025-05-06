@@ -4,10 +4,10 @@ const {verifyToken, isAdmin} =require("../middleware/authMiddleware")
 const { createTask, getAllTasks, getTaskById, updateTask, deleteTask } = require('../controllers/taskController');
 
 // Admin only
-router.post('/tasks', verifyToken, isAdmin, createTask);
-router.get('/tasks', verifyToken,  getAllTasks);
-router.get('/tasks/:id', verifyToken, getTaskById);
-router.put('/tasks/:id', verifyToken, updateTask);
-router.delete('/tasks/:id', verifyToken, isAdmin, deleteTask);
+router.post('/task', verifyToken, isAdmin, createTask);
+router.get('/getTasks', verifyToken ,getAllTasks);
+router.get('/getTaskById/:id', verifyToken, getTaskById);
+router.put('/task/:id', verifyToken, updateTask);
+router.delete('/task/:id', verifyToken, isAdmin, deleteTask);
 
 module.exports = router;

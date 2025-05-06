@@ -13,6 +13,8 @@ import { Plus, MoreHorizontal } from "lucide-react"
 import { TaskDialog } from "@/components/task-dialog"
 import { TaskFilters, type TaskFilters as TaskFiltersType } from "@/components/task-filters"
 import { Input } from "@/components/ui/input"
+import {  getToken } from "@/lib/auth"
+import axios from "axios"
 
 export function FilteredAdminTasks() {
   const [isTaskDialogOpen, setIsTaskDialogOpen] = useState(false)
@@ -23,6 +25,23 @@ export function FilteredAdminTasks() {
     assignedTo: [],
     dueDate: "",
   })
+  const fetchTasks = async () => {
+    const token = getToken()
+    const response = await axios.get("http://localhost:5000/api/tasks/getTasks", {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': token,
+      }
+    
+    });
+    console.log(response.data)
+  }
+  
+  useEffect(() => {
+    fetchTasks()
+    
+  },[])
+
   const [filteredTasks, setFilteredTasks] = useState(tasks)
 
   // Apply filters and search
@@ -121,11 +140,11 @@ export function FilteredAdminTasks() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">All Tasks</h1>
+          <h1 className="text-3xl font-bold">All Tasks </h1>
           <p className="text-gray-500 mt-1">Manage and track all team tasks</p>
         </div>
         <Button className="bg-blue-500 hover:bg-blue-600" onClick={() => setIsTaskDialogOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" />
+          {/* <Plus className="mr-2 h-4 w-4" /> */}
           Add Task
         </Button>
       </div>
